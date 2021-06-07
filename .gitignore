@@ -1,0 +1,10 @@
+./contact-modal.txt
+./TODOS.MD
+./env/
+./.vscode/settings.json
+./accounts/__pycache__/*.pyc
+./blog/__pycache__/*.pyc
+./accounts/migrations/*.py
+./blog/migrations/*.py
+./ruguru/__pycache__/*.pyc
+./staticfiles/
