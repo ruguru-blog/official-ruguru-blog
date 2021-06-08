@@ -8,3 +8,5 @@
 ./blog/migrations/*.py
 ./ruguru/__pycache__/*.pyc
 ./staticfiles/
+./db.sqlite3
+./ruguru/settings.py
