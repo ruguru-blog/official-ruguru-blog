@@ -14,8 +14,11 @@ Log in
 
 {% block content %}
 
-<div class="text-center mt-4 form-div" id="form-div">
-	<h1 class=" h3 font-weight-bold">Login</h1>
+<section class="text-center mt-4 login-form h-100">
+	<header>
+		<h1 class=" h3 font-weight-bold">Login</h1>
+	</header>
+	
 	<p>{{ form.errors }}</p>
 	<form action="{% url 'login' %}" method="POST" class="mt-4">
 		{% csrf_token %}
@@ -28,9 +31,13 @@ Log in
 			{% render_field form.password class="form-control" placeholder="Enter password" %}
 		</div>
 
-		<button type="submit" class="btn btn-secondary btn-block mt-4">Login</button>
+		<button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
 	</form>
-</div>
+</section>
+
+<section class="separator">
+	
+</section>
 
 
 {% endblock %}

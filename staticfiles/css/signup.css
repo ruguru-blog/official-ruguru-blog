@@ -6,16 +6,10 @@
 
 body{
 	background: #fbf3ff;
-	
-
 }
 
-.container{
-	margin-top: 100px;
-}
-
-.text-center{
-	max-width: 800px;
+.signup-form{
+	max-width: 720px;
 	margin: auto;
 }
 
@@ -23,6 +17,21 @@ body{
 button[type="submit"]{
 	border-radius: 30px;
 }
+
+.separator{
+	height: 3em;
+}
+.separator::after{
+	content: '';
+	height:  10em;
+
+
+}
+
+button[type="submit"]{
+	border-radius: 30px;
+}
+
 
 ul.errorlist{
 	list-style: none;

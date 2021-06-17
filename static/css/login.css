@@ -7,7 +7,7 @@
 body{
 	background: #fbf3ff;
 }
-.container{
+/*.container{
 	position: absolute;
 	left: 15%;
 	margin-top: 100px;
@@ -31,9 +31,25 @@ body{
 		left: 10%;
 	}
 }
+*/
 
 button[type="submit"]{
 	border-radius: 30px;
+}
+
+.login-form{
+	max-width:  720px;
+	margin: auto;
+}
+
+.separator{
+	height: 5em;
+}
+.separator::after{
+	content: '';
+	height:  10em;
+
+
 }
 ul.errorlist{
 	list-style: none;
