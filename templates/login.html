@@ -18,7 +18,7 @@ Log in
 	<header>
 		<h1 class=" h3 font-weight-bold">Login</h1>
 	</header>
-	
+
 	<p>{{ form.errors }}</p>
 	<form action="{% url 'login' %}" method="POST" class="mt-4">
 		{% csrf_token %}
@@ -30,13 +30,13 @@ Log in
 			<!-- <label for="username">{{form.password.label}}</label> -->
 			{% render_field form.password class="form-control" placeholder="Enter password" %}
 		</div>
-
-		<button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
+		<p>don't have an account? <a href="{% url 'signup' %}">create an account</a></p>
+		<button type=" submit" class="btn btn-primary btn-block mt-4">Login</button>
 	</form>
 </section>
 
 <section class="separator">
-	
+
 </section>
 
 

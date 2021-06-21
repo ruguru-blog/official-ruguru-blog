@@ -1,5 +1,5 @@
 :root{
-	--base-font: 'Source Sans Pro', sans-serif;
+	--base-font:  'PT Sans', sans-serif;
 	--text-primary: #b6b6b6;
 	--text-secondary: #ececec;
 	--bg-primary: #23232e;
@@ -14,19 +14,28 @@
 }
 
 
-.navbar{
+.site-navbar{
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	align-items: center;
 	background-color: var(--bg-primary);
 	transition: var(--transition-speed) ease;
 }
 
+.logo{
+	text-decoration: none;
+	color:  #fff;
+	letter-spacing: .1em;
+	font-size: 1.1em;
+	font-family: 'PT Sans', sans-serif;
+}
+
 .nav-links{
 	list-style-type: none;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
+	top:  50%;
 
 }
 
@@ -43,22 +52,14 @@ li a{
 }
 
 
-.extra{
-	display: flex;
-	justify-content: space-between;
-}
-
-.extra a{
-	text-decoration: none;
-	margin: 0.625em;
-	color: white;
-}
-
 
 @media  only screen and (max-width: 37.5em){
 	/* 600px */
 	.mobile-menu{
 		display: flex;
+	}
+	.site-navbar{
+		justify-content: space-around;
 	}
 	.nav-links{
 		display: none;
@@ -77,7 +78,7 @@ li a{
 }
 
 @media  only screen and (min-width: 48em){
-	/* 992px */
+	/* 768px */
 	.mobile-menu{
 		display: flex;
 	}
@@ -87,7 +88,7 @@ li a{
 }
 
 @media  only screen and (min-width: 62em){
-	/* 1200px */
+	/* 992px */
 	.mobile-menu{
 		display: none;
 	}
@@ -101,6 +102,14 @@ li a{
 	.mobile-menu{
 		display: none;
 	}
+	.logo{
+		font-size: 1.4em;
+	}
+
+	.nav-links li a{
+		padding: 10px auto;
+	}
+	
 	.nav-links{
 		display: flex;
 	}

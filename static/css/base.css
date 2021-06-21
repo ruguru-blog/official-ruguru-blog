@@ -49,8 +49,6 @@
     display: none;
 }
 
-
-
 #loader {
     width: var(--vspace-1_5);
     height: var(--vspace-1_5);
@@ -128,4 +126,9 @@
 
 .main{
     margin: 20px;
+}
+
+body{
+    font-family: 'PT Sans', sans-serif;
+    --webkit-font-smoothing:  antialiased;
 }

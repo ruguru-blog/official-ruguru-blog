@@ -1,12 +1,14 @@
 ./contact-modal.txt
 ./TODOS.MD
-./env/
+env/
 ./.vscode/settings.json
 ./accounts/__pycache__/*.pyc
 ./blog/__pycache__/*.pyc
-./accounts/migrations/*.py
-./blog/migrations/*.py
+./accounts/migrations/
+./blog/migrations/
 ./ruguru/__pycache__/*.pyc
 ./staticfiles/
 ./*.sqlite3
 ./ruguru/settings.py
+misc/
+media/

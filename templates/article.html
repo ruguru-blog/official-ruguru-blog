@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headContent %}
+<link rel="stylesheet" href="{% static 'css/article.css' %}">
+
+{% endblock %}
+
+<title>{% block title %}Categories{% endblock %}</title>
+
+
+{% block content %}
+<hr style="max-width: 1000px; margin: auto;">
+
+<div class="container">
+	{% if post %}
+	<section>
+		<article>
+			<p class="h6">Written by {{post.author}} | {{post.publication_date}}</p>
+			<h2>{{post.title}}</h2>
+			{{post.post_content | safe }}
+		</article>
+	</section>
+
+
+
+	<br>
+	{% endif %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headContent %}
+<link rel="stylesheet" href="{% static 'css/categories/base_cat.css' %}">
+
+{% endblock %}
+
+<title>{% block title %}Category: Life Hacks{% endblock %}</title>
+
+
+{% block content %}
+<div class="container">
+	<div class="page-title">
+		<div class="category-title">
+			<h1>Life Hacks</h1>
+		</div>
+		<h3 class='page-description'>The Worlds of devices, applications &amp; Next Gen. Evolution</h3>
+	</div>
+	<hr>
+
+	{% for post in object_list %}
+
+	<article>
+		<h1>{{post.title}}</h1>
+		{{post.post_content | safe | slice:":200" }}
+		<h6>{{post.get_category}}</h6>
+		<a href="{% url 'article_details' post.slug %}" class="btn btn-primary">Read More</a>
+	</article>
+
+
+
+	{% endfor %}
+
+</div>
+
+
+
+{% endblock %}
