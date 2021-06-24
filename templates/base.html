@@ -10,11 +10,8 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
 	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png'%}">
 	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
-	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="manifest" href="{% static 'favicons/site.webmanifest'%}">
+	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -42,6 +39,7 @@
 			<label class="logo">ruguru blog</label>
 		</a>
 		<ul class="nav-links">
+			<li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
 			<li class="nav-item"><a href="{% url 'life-hacks' %}">Life Hacks</a></li>
 			<li class="nav-item"><a href="{% url 'tech' %}">Tech</a></li>
 			<li class="nav-item"><a href="{% url 'project' %}">Project management</a></li>
@@ -55,6 +53,8 @@
 			<a class="dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false" style="color: white; text-decoration: none;">Categories</a>
 			<div class="dropdown-menu" aria-labelledby="dropdownId">
+			 	<a class="dropdown-item"  href="{% url 'home' %}">Home</a>
+
 				<a class="dropdown-item" href="{% url 'project' %}">Project Management</a>
 				<a class="dropdown-item" href="{% url 'business' %}">Business</a>
 				<a class="dropdown-item" href="{% url 'marketing' %}">Marketing</a>
@@ -69,7 +69,8 @@
 		<div class="extra">
 			<div class="dropdown user-profile-dropdown">
 				<a class="dropdown-toggle" href="#" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false" class="profile"><i class="fa fa-user" aria-hidden="true"
+					aria-expanded="false">
+					<i class="fa fa-user" aria-hidden="true"
 						style="color: #fff;"></i></a>
 				<div class="dropdown-menu" aria-labelledby="profile-dropdown">
 					<a class="dropdown-item" href="#" style="color: black;">Your Profile</a>

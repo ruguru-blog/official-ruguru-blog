@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from accounts.forms import SignUpForm, LoginForm
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, Comment
 from django.views.generic import ListView
 from django.views.generic import DetailView
+from .forms import CommentForm
+from django.shortcuts import get_object_or_404
 
-def index(request):
-    form = LoginForm()
-    return render(request, 'index.html', {"form": form})
+class IndexListView(ListView):
+    queryset = Post.objects.filter(
+        status='published').order_by('-publication_date')
+    template_name = 'index.html'
 
 
 def about_me(request):
@@ -58,4 +61,21 @@ class ProjectManagementListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = 'article.html'
+
+
+
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    comments = Comment.objects.filter(post=post)
+
+    comment_form = CommentForm()
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST or None)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.save()
+    context = {'post': post, 'comments': comments, "comment_form": comment_form}
+
+    return render(request, 'article.html', context)
 

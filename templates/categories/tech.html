@@ -30,7 +30,9 @@
 				</figure>
 				<div class="article-content">
 					<a href="#" class="card-category">{{post.get_category}}</a>
-					<h3 class="card-title">{{post.title}}</h3>
+					<a href="{% url 'article_details' post.slug %}">
+						<h3 class="card-title">{{post.title}}</h3>
+					</a>
 					<p class="card-excerpt">{{post.post_content | safe | slice:":220" }}...</p>
 				</div>
 
@@ -38,7 +40,7 @@
 					<ul class="inline-list">
 						<li>{{post.author}}</li>
 						<li class="dot"></li>
-						<li>{{post.publication_date}}</li>
+						<li>{{post.publication_date | date:"M d, Y"}}</li>
 					</ul>
 				</div>
 			</article>

@@ -2,7 +2,7 @@
 	--base-font:  'PT Sans', sans-serif;
 	--text-primary: #b6b6b6;
 	--text-secondary: #ececec;
-	--bg-primary: #23232e;
+	--bg-primary: #23232a;
 	--bg-secondary: #141418;
 	--transition-speed: 600ms;
 }
@@ -39,6 +39,8 @@
 
 }
 
+
+
 .nav-item{
 	position: relative;
 	padding: 0 1.25em;
@@ -48,7 +50,12 @@
 li a{
 	text-decoration: none;
 	color: #fff;
+	font-weight: bold;
 	font-family: var(--base-font);
+}
+
+li a:hover{
+	text-decoration: none;
 }
 
 

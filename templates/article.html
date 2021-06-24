@@ -12,20 +12,51 @@
 {% block content %}
 <hr style="max-width: 1000px; margin: auto;">
 
+{% load crispy_forms_tags %}
+
 <div class="container">
+
 	{% if post %}
 	<section>
-		<article>
-			<p class="h6">Written by {{post.author}} | {{post.publication_date}}</p>
-			<h2>{{post.title}}</h2>
+		<article class="article-content">
+			<p class="h6" style="font-weight: bold">Written by: {{post.author}} | {{post.publication_date | date:"M d, Y"}}</p>
+
+			<h1 style="margin-bottom: 2.5rem;">{{post.title}}</h2>
 			{{post.post_content | safe }}
 		</article>
 	</section>
-
-
-
 	<br>
 	{% endif %}
+
+	{% comment 'com' %}
+	{% if comments %}
+		{% for comment in comments %}
+		
+		{{comment.name}}| {{comment.date}}
+		{{comment.body}}
+
+		{% endfor %}
+	{% endif %}
+
+	{% endcomment %}
+
+	<section class="comments-section">
+	
+	</section>
+
+
+	<section class="add-comment">
+		<h4 style="font-weight: bold;">Leave a Reply</h4>
+		<p >Your email address will not be published. Required fields are marked *</p>
+		<form action="{% url 'article_details' post.slug %}" method="POST">
+			{% csrf_token %}
+			{{ comment_form | crispy }}
+
+			<button class="btn btn-primary">post comment</button>
+		</form>
+	</section>
+	
+
 </div>
 
 

@@ -86,6 +86,25 @@ class Post(models.Model):
         return reverse('article_details', args=[self.slug])
 
 
+    def __str__(self):
+        return self.title
+
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=127, verbose_name="Name")
+    email = models.CharField(max_length=256, verbose_name="Email")
+    body = models.TextField(verbose_name='Comment')
+    created_date = models.DateTimeField( auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_date']
+
+    def __str__(self):
+        return self.name
+
 def slug_generator(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
