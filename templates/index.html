@@ -5,6 +5,8 @@
 <meta name="description" content="Blogging site that provides content and information on different categories like Content Strategy, Technology/Tech, Project management,
 Life hacks, Business and Marketing">
 <link rel="stylesheet" href="{% static 'css/categories/base_cat.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
 
 {% endblock %}
 
@@ -14,7 +16,7 @@ Ruguru Blog
 
 
 {% block content %}
-<div class="container" style="margin-top: 40px">
+<div class="container" style="margin-top: 1rem;">
 	<div class="site-container">
 		<div class="article-container">
 			{% for post in object_list %}

@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm, LoginForm
+from django.contrib.auth.decorators import login_required
 
 
 def login_view(request):
@@ -47,3 +48,8 @@ def signup(request):
             return redirect('login')
     context = {'form': form}
     return render(request, 'signup.html', context)
+
+
+@login_required(login_url="/accounts/login")
+def user_profile(request):
+    return render(request, "profile.html")

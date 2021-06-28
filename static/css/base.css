@@ -101,14 +101,14 @@
  .ss-loaded #preloader {
     opacity: 0;
     visibility: hidden;
-    -webkit-transition: all .3s .6s ease-in-out;
-    transition: all .3s .6s ease-in-out;
+    -webkit-transition: all .2s .4s ease-in-out;
+    transition: all .2s .4s ease-in-out;
 }
 
 .ss-loaded #preloader #loader {
     opacity: 0;
-    -webkit-transition: opacity .3s ease-in-out;
-    transition: opacity .3s ease-in-out;
+    -webkit-transition: opacity .2s ease-in-out;
+    transition: opacity .2s ease-in-out;
 }
 
 
@@ -131,4 +131,5 @@
 body{
     font-family: 'PT Sans', sans-serif;
     --webkit-font-smoothing:  antialiased;
+    font-display: auto;
 }

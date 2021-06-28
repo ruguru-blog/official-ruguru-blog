@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headContent %}
+<meta name="description" content="Blogging site that provides content and information on different categories like Content Strategy, Technology/Tech, Project management,
+Life hacks, Business and Marketing">
+<link rel="stylesheet" href="{% static 'css/categories/base_cat.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+
+{% endblock %}
+
+{% block title %}
+Ruguru Blog
+{% endblock %}
+
+{% block content %}
+
+<section class="profile">
+	<header class="header">
+		<div class="details">
+			<img src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=b38c22a46932485790a3f52c61fcbe5a"
+				alt="John Doe" class="profile-pic">
+			<h1 class="heading">Claire Doe</h1>
+
+			<div class="stats">
+				<div class="col-4">
+					<h4>20</h4>
+					<p>Reviews</p>
+				</div>
+				<div class="col-4">
+					<h4>10</h4>
+					<p>Articles read</p>
+				</div>
+				<div class="col-4">
+					<h4>100</h4>
+					<p>Discussions</p>
+				</div>
+			</div>
+		</div>
+	</header>
+</section>
+
+{% endblock %}

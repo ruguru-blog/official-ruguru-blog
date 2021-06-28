@@ -1,7 +1,4 @@
-.article-content{
-	max-width: 40rem;
-	margin:  auto;
-}
+
 
 .add-comment{
 	max-width:  30rem;
@@ -11,5 +8,6 @@
 }
 
 img{
+	max-width: 100%;
 	overflow: hidden;
 }

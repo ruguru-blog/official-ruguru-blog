@@ -7,6 +7,7 @@ from django.views.generic import DetailView
 from .forms import CommentForm
 from django.shortcuts import get_object_or_404
 
+
 class IndexListView(ListView):
     queryset = Post.objects.filter(
         status='published').order_by('-publication_date')
@@ -15,6 +16,7 @@ class IndexListView(ListView):
 
 def about_me(request):
     return render(request, 'categories/about_me.html')
+
 
 class TechListView(ListView):
     category_id = Category.objects.filter(slug='technology')
@@ -63,19 +65,18 @@ class PostDetailView(DetailView):
     template_name = 'article.html'
 
 
-
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     comments = Comment.objects.filter(post=post)
 
-    comment_form = CommentForm()
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-    context = {'post': post, 'comments': comments, "comment_form": comment_form}
+    comment_form = CommentForm()
+    context = {'post': post, 'comments': comments,
+               "comment_form": comment_form}
 
     return render(request, 'article.html', context)
-
