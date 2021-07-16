@@ -23,7 +23,8 @@
 
 	<div class="site-container">
 		<div class="article-container">
-			{% for post in object_list %}
+			{% if post_list %}
+			{% for post in post_list %}
 
 			<article class="article-card">
 				<figure class="article-image">
@@ -47,11 +48,11 @@
 			</article>
 			</a>
 			{% endfor %}
+			{% else %}
+			<p>This category has no posts. You can check in later or check other categories</p>
+			{% endif %}
 		</div>
 	</div>
-
-
-
 </div>
 
 

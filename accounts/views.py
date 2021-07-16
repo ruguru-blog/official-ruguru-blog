@@ -5,6 +5,8 @@ from django.contrib import messages
 from .forms import SignUpForm, LoginForm
 from django.contrib.auth.decorators import login_required
 
+from .models import Account
+
 
 def login_view(request):
     if request.user.is_authenticated:

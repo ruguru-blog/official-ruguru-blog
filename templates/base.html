@@ -70,7 +70,12 @@
 			<div class="dropdown user-profile-dropdown">
 				<a class="dropdown-toggle" href="#" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false">
-					<i class="fa fa-user" aria-hidden="true" style="color: #fff;"></i></a>
+					{% if request.user.is_authenticated %}
+					<img src="{{request.user.profile_image.url}}" alt="profile image" class="avatar">
+					{%else%}
+					<i class="fa fa-user" aria-hidden="true" style="color: rgb(112, 100, 100);"></i></a>
+				{% endif %}
+
 				<div class="dropdown-menu" aria-labelledby="profile-dropdown">
 					<a class="dropdown-item" href="{% url 'profile' %}" style="color: black;">Your Profile</a>
 					{% if request.user %}

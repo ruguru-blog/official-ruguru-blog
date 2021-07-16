@@ -10,7 +10,7 @@ from django.shortcuts import get_object_or_404
 
 class IndexListView(ListView):
     queryset = Post.objects.filter(
-        status='published').order_by('-publication_date')
+        status='published').order_by('?')
     template_name = 'index.html'
 
 
@@ -21,21 +21,21 @@ def about_me(request):
 class TechListView(ListView):
     category_id = Category.objects.filter(slug='technology')
     queryset = Post.objects.filter(
-        category__in=category_id).order_by('-publication_date')
+        category__in=category_id, status='published').order_by('-publication_date')
     template_name = 'categories/tech.html'
 
 
 class BusinessListView(ListView):
     category_id = Category.objects.filter(slug='business')
     queryset = Post.objects.filter(
-        category__in=category_id).order_by('-publication_date')
+        category__in=category_id, status='published').order_by('-publication_date')
     template_name = 'categories/business.html'
 
 
 class MarketingListView(ListView):
     category_id = Category.objects.filter(slug='marketing')
     queryset = Post.objects.filter(
-        category__in=category_id).order_by('-publication_date')
+        category__in=category_id, status='published').order_by('-publication_date')
     template_name = 'categories/marketing.html'
 
 
@@ -49,14 +49,14 @@ class ContentStrategyListView(ListView):
 class LifeHacksListView(ListView):
     category_id = Category.objects.filter(slug='life-hacks')
     queryset = Post.objects.filter(
-        category__in=category_id).order_by('-publication_date')
+        category__in=category_id, status='published').order_by('-publication_date')
     template_name = 'categories/life_hacks.html'
 
 
 class ProjectManagementListView(ListView):
     category_id = Category.objects.filter(title='Project Management')
     queryset = Post.objects.filter(
-        category__in=category_id).order_by('-publication_date')
+        category__in=category_id, status='published').order_by('-publication_date')
     template_name = 'categories/project_management.html'
 
 
@@ -80,3 +80,7 @@ def post_detail(request, slug):
                "comment_form": comment_form}
 
     return render(request, 'article.html', context)
+
+
+def error_404(request, exception):
+    return render(request, "404.html")
