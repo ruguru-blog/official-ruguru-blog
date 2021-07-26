@@ -10,7 +10,4 @@ class SignUpForm(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
-    class Meta:
-        model = Account
-
-        fields = ("username", "password")
+    username = forms.CharField(label='Email/userename', required=True)

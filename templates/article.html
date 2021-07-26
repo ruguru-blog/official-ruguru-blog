@@ -20,8 +20,9 @@
 		<article class="article-content">
 			<p class="h6" style="font-weight: bold">
 				Written by: {{post.author}} | {{post.publication_date |date:"M d,Y"}}</p>
-			<img src="{{post.picture.url}}" alt="" style="overflow: hidden;">
 			<h1 style="margin-bottom: 2.5rem;">{{post.title}}</h2>
+
+				<!-- <img src="{{post.picture.url}}" alt="" style="overflow: hidden;"> -->
 				{{post.post_content | safe }}
 		</article>
 	</section>

@@ -11,16 +11,13 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png'%}">
 	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
 	<link rel="manifest" href="{% static 'favicons/site.webmanifest'%}">
-	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{% static 'css/base.css' %}">
 	<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
 	{% block headContent %}
 	{% endblock %}
-
 	<title>{% block title %}{% endblock %}</title>
 </head>
 
@@ -32,68 +29,7 @@
 	</div>
 	<!-- ============== preloader ends ======================= -->
 
-	<!-- NAVIGATION BAR -->
-	<nav class="site-navbar">
-		<a href="/" class="logo">
-			<!-- <img src="{% static 'img/logo.svg'%}" alt="logo" srcset="" width="150" height="120"> -->
-			<label class="logo">ruguru blog</label>
-		</a>
-		<ul class="nav-links">
-			<li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
-			<li class="nav-item"><a href="{% url 'life-hacks' %}">Life Hacks</a></li>
-			<li class="nav-item"><a href="{% url 'tech' %}">Tech</a></li>
-			<li class="nav-item"><a href="{% url 'project' %}">Project management</a></li>
-			<li class="nav-item"><a href="{% url 'business' %}">Business</a></li>
-			<li class="nav-item"><a href="{% url 'marketing' %}">Marketing</a></li>
-			<li class="nav-item"><a href="{% url 'content_strategy' %}">Content Strategy</a></li>
-			<li class="nav-item"><a href="{% url 'about_me' %}">About me</a></li>
-		</ul>
-
-		<ul class="dropdown mobile-menu">
-			<a class="dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false" style="color: white; text-decoration: none;">Categories</a>
-			<div class="dropdown-menu" aria-labelledby="dropdownId">
-				<a class="dropdown-item" href="{% url 'home' %}">Home</a>
-
-				<a class="dropdown-item" href="{% url 'project' %}">Project Management</a>
-				<a class="dropdown-item" href="{% url 'business' %}">Business</a>
-				<a class="dropdown-item" href="{% url 'marketing' %}">Marketing</a>
-				<a class="dropdown-item" href="{% url 'content_strategy' %}">Content Strategy</a>
-				<a class="dropdown-item" href="{% url 'life-hacks' %}">Life Hacks</a>
-				<a class="dropdown-item" href="{% url 'tech' %}">Technology</a>
-				<a class="dropdown-item" href="{% url 'about_me' %}">About me</a>
-
-			</div>
-		</ul>
-
-		<div class="extra">
-			<div class="dropdown user-profile-dropdown">
-				<a class="dropdown-toggle" href="#" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">
-					{% if request.user.is_authenticated %}
-					<img src="{{request.user.profile_image.url}}" alt="profile image" class="avatar">
-					{%else%}
-					<i class="fa fa-user" aria-hidden="true" style="color: rgb(112, 100, 100);"></i></a>
-				{% endif %}
-
-				<div class="dropdown-menu" aria-labelledby="profile-dropdown">
-					<a class="dropdown-item" href="{% url 'profile' %}" style="color: black;">Your Profile</a>
-					{% if request.user %}
-					{% if request.user.is_authenticated %}
-					<a class="dropdown-item" href="{% url 'logout' %}"
-						class="sign-link btn btn-outline-primary">Logout</a>
-					{% else %}
-					<a class="dropdown-item" href="{% url 'login' %}"
-						class="login-link btn btn-outline-primary">Login</a>
-					<a class="dropdown-item" href="{% url 'signup' %}"
-						class="sign-link btn btn-outline-primary">Signup</a>
-					{% endif %}
-					{% endif %}
-				</div>
-			</div>
-		</div>
-	</nav>
-	<!-- NAVIGATION BAR ENDS-->
+	{% include 'navbar.html' %}
 
 
 	<!-- MESSAGES -->
@@ -110,8 +46,6 @@
 
 		{% endif %}
 	</div>
-
-	{% load widget_tweaks %}
 
 	<main class="container-fluid">
 		<!-- body content -->

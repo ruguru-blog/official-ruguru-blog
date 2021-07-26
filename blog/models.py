@@ -4,6 +4,7 @@ from django.utils.text import slugify
 import random
 import string
 from ckeditor_uploader.fields import RichTextUploadingField
+from django_resized import ResizedImageField
 from .utils import unique_slug_generator
 from django.db.models.signals import pre_save
 
@@ -64,8 +65,10 @@ class Post(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, verbose_name='Category')
     publication_date = models.DateTimeField(verbose_name='Created')
-    picture = models.ImageField(
-        upload_to='uploads/%Y/%m/%d', blank=True, null=True, verbose_name='Picture as thumbnail')
+    picture = ResizedImageField(size=[600, 400], crop=['middle', 'center'], quality=75,
+                                upload_to='uploads/%Y/%m/%d', blank=True, null=True, verbose_name='Picture as thumbnail')
+    picture_description = models.CharField(
+        max_length=127, verbose_name="description of the image", null=False)
     post_content = RichTextUploadingField(
         null=False, verbose_name="post content")
     author = models.CharField(
@@ -85,25 +88,25 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('article_details', args=[self.slug])
 
-
     def __str__(self):
         return self.title
 
 
-
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=127, verbose_name="Name")
     email = models.CharField(max_length=256, verbose_name="Email")
     body = models.TextField(verbose_name='Comment')
-    created_date = models.DateTimeField( auto_now_add=True)
+    created_date = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['created_date']
 
     def __str__(self):
-        return self.name
+        return str(self.name) + " | " + str(self.post)
+
 
 def slug_generator(sender, instance, *args, **kwargs):
     if not instance.slug:

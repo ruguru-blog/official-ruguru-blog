@@ -1,4 +1,26 @@
+@font-face{
+    font-family: "PT Sans";
+    src: url("../fonts/PTSans-Regular.ttf") format("truetype");
+    speak: none;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-transform: none;
+    line-height: 1;
+    --webkit-font-smoothing:antialiased;
+}
 
+@font-face{
+    font-family: "PT Sans Bold";
+    src: url("../fonts/PTSans-Bold.ttf") format("truetype");
+    speak: none;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-transform: none;
+    line-height: 1;
+    --webkit-font-smoothing:antialiased;
+}
 
 /* ------------------------------------------------------------------- 
  * ## vertical spacing and typescale
@@ -130,6 +152,5 @@
 
 body{
     font-family: 'PT Sans', sans-serif;
-    --webkit-font-smoothing:  antialiased;
     font-display: auto;
 }

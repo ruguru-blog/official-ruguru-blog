@@ -7,36 +7,14 @@
 body{
 	background: #fbf3ff;
 }
-/*.container{
-	position: absolute;
-	left: 15%;
-	margin-top: 100px;
-}
-
-.form-div{
-	position: relative;
-	margin-top: 40px;
-	max-width: 720px; 
-	margin: auto; 
-	
-}
-
-@media (min-width: 30.5em){
-	.container{
-		left:0%;
-	}
-}
-@media (min-width: 43.75em){
-	.container{
-		left: 10%;
-	}
-}
-*/
 
 button[type="submit"]{
 	border-radius: 30px;
 }
 
+label{
+	margin-left: 0;
+}
 .login-form{
 	max-width:  720px;
 	margin: auto;
@@ -48,13 +26,8 @@ button[type="submit"]{
 .separator::after{
 	content: '';
 	height:  10em;
-
-
 }
-ul.errorlist{
-	list-style: none;
-	color: red;
-}
+
 
 
 

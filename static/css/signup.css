@@ -24,16 +24,8 @@ button[type="submit"]{
 .separator::after{
 	content: '';
 	height:  10em;
-
-
 }
 
 button[type="submit"]{
 	border-radius: 30px;
-}
-
-
-ul.errorlist{
-	list-style: none;
-	color: red;
 }
