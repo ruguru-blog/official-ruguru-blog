@@ -19,6 +19,7 @@ def about_me(request):
 
 
 class TechListView(ListView):
+
     category_id = Category.objects.filter(slug='technology')
     queryset = Post.objects.filter(
         category__in=category_id, status='published').order_by('-publication_date')
@@ -42,7 +43,7 @@ class MarketingListView(ListView):
 class ContentStrategyListView(ListView):
     category_id = Category.objects.filter(slug='content-strategy')
     queryset = Post.objects.filter(
-        category__in=category_id).order_by('-publication_date')
+        category__in=category_id, status='published').order_by('-publication_date')
     template_name = 'categories/content_strategy.html'
 
 
@@ -69,6 +70,18 @@ def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     comments = Comment.objects.filter(post=post)
 
+    # get 5 latest post
+    recent_post = Post.objects.order_by('-publication_date')[:5]
+    latest = []
+
+    for i in recent_post:
+        latest.append(
+            {
+                "title": i.title,
+                'slug': i.slug
+            }
+        )
+
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
@@ -77,7 +90,7 @@ def post_detail(request, slug):
             comment.save()
     comment_form = CommentForm()
     context = {'post': post, 'comments': comments,
-               "comment_form": comment_form}
+               "comment_form": comment_form, "latest": latest}
 
     return render(request, 'article.html', context)
 

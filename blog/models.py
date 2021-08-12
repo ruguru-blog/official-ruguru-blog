@@ -65,7 +65,7 @@ class Post(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, verbose_name='Category')
     publication_date = models.DateTimeField(verbose_name='Created')
-    picture = ResizedImageField(size=[600, 400], crop=['middle', 'center'], quality=75,
+    picture = ResizedImageField(size=[800, 400], crop=['middle', 'center'], quality=75,
                                 upload_to='uploads/%Y/%m/%d', blank=True, null=True, verbose_name='Picture as thumbnail')
     picture_description = models.CharField(
         max_length=127, verbose_name="description of the image", null=False)

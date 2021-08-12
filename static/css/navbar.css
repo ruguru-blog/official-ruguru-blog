@@ -67,7 +67,7 @@ li a:hover{
 
 
 
-@media  only screen and (max-width: 37.5em){
+@media  screen and (max-width: 37.5em){
 	/* 600px */
 	.mobile-menu{
 		display: flex;
@@ -108,6 +108,9 @@ li a:hover{
 	}
 	.nav-links{
 		display: flex;
+		align-items: stretch;
+		align-content: space-between;
+		margin-top: 10px;
 	}
 }
 

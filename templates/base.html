@@ -32,7 +32,10 @@
 	{% include 'navbar.html' %}
 
 
-	<!-- MESSAGES -->
+	{% comment %}
+	MESSAGES
+	{% endcomment %}
+
 	<div class="messages" id="messages">
 		{% if messages %}
 		{% for message in messages %}
@@ -43,11 +46,10 @@
 			</button>
 		</div>
 		{% endfor %}
-
 		{% endif %}
 	</div>
 
-	<main class="container-fluid">
+	<main class="container-fluid" style="margin: 0px;">
 		<!-- body content -->
 		{% block content %}
 		{% endblock %}
