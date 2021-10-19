@@ -61,9 +61,13 @@ class ProjectManagementListView(ListView):
     template_name = 'categories/project_management.html'
 
 
-class PostDetailView(DetailView):
-    model = Post
-    template_name = 'article.html'
+def category_list(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    queryset = Post.objects.filter(
+        category=category, status='published').order_by('-publication_date')
+    
+    context = {"category_post_list": queryset,"category_name": category.title}
+    return render(request, 'blog/category_list.html', context)
 
 
 def post_detail(request, slug):

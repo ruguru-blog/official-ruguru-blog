@@ -17,5 +17,6 @@ urlpatterns = [
     path("life-hacks/",
          views.LifeHacksListView.as_view(), name="life-hacks"),
     path('article/<slug:slug>/',
-         views.post_detail, name='article_details')
+         views.post_detail, name='article_details'),
+    path("category/<slug:slug>", views.category_list, name="category-list")
 ]

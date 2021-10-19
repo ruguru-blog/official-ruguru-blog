@@ -10,8 +10,9 @@ from .models import Account
 
 def login_view(request):
     if request.user.is_authenticated:
+        messages.info(request, "You've already logged in.")
         return redirect("home")
-
+    
     form = LoginForm()
     if request.method == 'POST':
         username = request.POST.get("username")
@@ -27,7 +28,7 @@ def login_view(request):
             messages.info(
                 request, f"username or password is incorrect")
 
-    return render(request, "login.html", {"form": form})
+    return render(request, "accounts/login.html", {"form": form})
 
 
 def logout_view(request):
@@ -37,8 +38,8 @@ def logout_view(request):
 
 def signup(request):
     if request.user.is_authenticated:
+        messages.info(request, "You've already logged in.")
         return redirect("home")
-
     form = SignUpForm()
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -49,9 +50,9 @@ def signup(request):
                 request, f"Account created successfully for {username}")
             return redirect('login')
     context = {'form': form}
-    return render(request, 'signup.html', context)
+    return render(request, 'accounts/signup.html', context)
 
 
 @login_required(login_url="/accounts/login")
 def user_profile(request):
-    return render(request, "profile.html")
+    return render(request, "accounts/profile.html")
