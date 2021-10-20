@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from accounts.forms import SignUpForm, LoginForm
-from .models import Post, Category, Tag, Comment
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from .forms import CommentForm
 from django.shortcuts import get_object_or_404
+from .models import Post
+from .models import Category
+from .models import Comment
 
 
 class IndexListView(ListView):
@@ -20,45 +21,80 @@ def about_me(request):
 
 class TechListView(ListView):
 
-    category_id = Category.objects.filter(slug='technology')
+    category = get_object_or_404(Category, slug='technology')
     queryset = Post.objects.filter(
-        category__in=category_id, status='published').order_by('-publication_date')
+        category=category, status='published').order_by('-publication_date')
     template_name = 'categories/tech.html'
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category_name"] = self.category.title
+        context["category_description"] = self.category.description
+        
+        return context
 
 class BusinessListView(ListView):
-    category_id = Category.objects.filter(slug='business')
+    category = get_object_or_404(Category, slug='business')
     queryset = Post.objects.filter(
-        category__in=category_id, status='published').order_by('-publication_date')
+        category = category, status='published').order_by('-publication_date')
     template_name = 'categories/business.html'
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category_name"] = self.category.title
+        context["category_description"] = self.category.description
+        return context
 
 class MarketingListView(ListView):
-    category_id = Category.objects.filter(slug='marketing')
+    category = get_object_or_404(Category, slug='marketing')
     queryset = Post.objects.filter(
-        category__in=category_id, status='published').order_by('-publication_date')
+        category=category, status='published').order_by('-publication_date')
     template_name = 'categories/marketing.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category_name"] = self.category.title
+        context["category_description"] = self.category.description
+        return context
 
 
 class ContentStrategyListView(ListView):
-    category_id = Category.objects.filter(slug='content-strategy')
+    category = get_object_or_404(Category, slug='content-strategy')
     queryset = Post.objects.filter(
-        category__in=category_id, status='published').order_by('-publication_date')
+        category=category, status='published').order_by('-publication_date')
     template_name = 'categories/content_strategy.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category_name"] = self.category.title
+        context["category_description"] = self.category.description
+        return context
 
 
 class LifeHacksListView(ListView):
-    category_id = Category.objects.filter(slug='life-hacks')
+    category = get_object_or_404(Category,slug='life-hacks')
     queryset = Post.objects.filter(
-        category__in=category_id, status='published').order_by('-publication_date')
+        category=category, status='published').order_by('-publication_date')
     template_name = 'categories/life_hacks.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category_name"] = self.category.title
+        context["category_description"] = self.category.description
+        return context
 
 
 class ProjectManagementListView(ListView):
-    category_id = Category.objects.filter(title='Project Management')
+    category = get_object_or_404( Category, slug='project-management')
     queryset = Post.objects.filter(
-        category__in=category_id, status='published').order_by('-publication_date')
+        category=category, status='published').order_by('-publication_date')
     template_name = 'categories/project_management.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category_name"] = self.category.title
+        context["category_description"] = self.category.description
+        return context
 
 
 def category_list(request, slug):

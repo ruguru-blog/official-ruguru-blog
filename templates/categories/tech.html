@@ -6,16 +6,16 @@
 
 {% endblock %}
 
-<title>{% block title %}Category: Tech{% endblock %}</title>
+<title>{% block title %}Category: {{category_name}}{% endblock %}</title>
 
 
 {% block content %}
 <div class="container">
 	<div class="page-title">
 		<div class="category-title">
-			<h1>TECH</h1>
+			<h1>{{category_name}}</h1>
 		</div>
-		<h3 class='page-description'>The Worlds of devices, applications &amp; Next Gen. Evolution</h3>
+		<h3 class='page-description'>{{category_description}}</h3>
 	</div>
 
 	<hr>

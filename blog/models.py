@@ -8,12 +8,6 @@ from django_resized import ResizedImageField
 from .utils import unique_slug_generator
 from django.db.models.signals import pre_save
 
-# def generate_random_slug():
-#     """ generate a random string to use for slug """
-#     return ''.join(random.choice(string.ascii_letters))
-
-# class Author(models.Model):
-#     pass
 
 STATUS_CHOICES = (('published', 'Published'), ('draft', 'Draft'),)
 
@@ -38,14 +32,15 @@ class Category(models.Model):
     title = models.CharField(max_length=150, verbose_name='Title')
     slug = models.SlugField(max_length=150, unique=True,
                             allow_unicode=True, blank=True, null=True)
+    description = models.CharField(max_length=450, verbose_name='Category description', null=False)
 
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
         unique_together = (('title', 'slug'),)
 
-    def get_absolute_url(self):
-        return reverse('categories', args=[self.slug])
+    def get_absolute_url(self, slug):
+        return reverse('category-list', args=[slug])
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
