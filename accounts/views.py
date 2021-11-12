@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm, LoginForm
@@ -12,7 +11,7 @@ def login_view(request):
     if request.user.is_authenticated:
         messages.info(request, "You've already logged in.")
         return redirect("home")
-    
+
     form = LoginForm()
     if request.method == 'POST':
         username = request.POST.get("username")
