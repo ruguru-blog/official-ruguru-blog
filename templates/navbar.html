@@ -7,12 +7,12 @@
 	</a>
 	<ul class="nav-links">
 		<li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
-		<li class="nav-item"><a href="{% url 'life-hacks' %}">Life Hacks</a></li>
-		<li class="nav-item"><a href="{% url 'tech' %}">Tech</a></li>
-		<li class="nav-item"><a href="{% url 'project' %}">Project management</a></li>
-		<li class="nav-item"><a href="{% url 'business' %}">Business</a></li>
-		<li class="nav-item"><a href="{% url 'marketing' %}">Marketing</a></li>
-		<li class="nav-item"><a href="{% url 'content_strategy' %}">Content Strategy</a></li>
+		<li class="nav-item"><a href="{% url 'category-list' 'life-hacks' %}">Life Hacks</a></li>
+		<li class="nav-item"><a href="{% url 'category-list' 'technology' %}">Tech</a></li>
+		<li class="nav-item"><a href="{% url 'category-list' 'project-management' %}">Project management</a></li>
+		<li class="nav-item"><a href="{% url 'category-list' 'business' %}">Business</a></li>
+		<li class="nav-item"><a href="{% url 'category-list' 'marketing' %}">Marketing</a></li>
+		<li class="nav-item"><a href="{% url 'category-list' 'content-strategy' %}">Content Strategy</a></li>
 	</ul>
 
 	<ul class="dropdown mobile-menu">
@@ -20,12 +20,12 @@
 			aria-expanded="false" style="color: white; text-decoration: none;">Categories</a>
 		<div class="dropdown-menu" aria-labelledby="dropdownId">
 			<a class="dropdown-item" href="{% url 'home' %}">Home</a>
-			<a class="dropdown-item" href="{% url 'life-hacks' %}">Life Hacks</a>
-			<a class="dropdown-item" href="{% url 'tech' %}">Technology</a>
-			<a class="dropdown-item" href="{% url 'business' %}">Business</a>
-			<a class="dropdown-item" href="{% url 'marketing' %}">Marketing</a>
-			<a class="dropdown-item" href="{% url 'project' %}">Project management</a>
-			<a class="dropdown-item" href="{% url 'content_strategy' %}">Content Strategy</a>
+			<a class="dropdown-item" href="{% url 'category-list' 'life-hacks' %}">Life Hacks</a>
+			<a class="dropdown-item" href="{% url 'category-list' 'tech' %}">Technology</a>
+			<a class="dropdown-item" href="{% url 'category-list' 'business' %}">Business</a>
+			<a class="dropdown-item" href="{% url 'category-list' 'marketing' %}">Marketing</a>
+			<a class="dropdown-item" href="{% url 'category-list' 'project' %}">Project management</a>
+			<a class="dropdown-item" href="{% url 'category-list' 'content-strategy' %}">Content Strategy</a>
 		</div>
 	</ul>
 
@@ -37,8 +37,9 @@
 				<img src="{{request.user.profile_image.url}}" alt="profile image" class="avatar">
 				{%else%}
 				<i class="fa fa-user" aria-hidden="true" style="color: rgb(112, 100, 100);"></i>
+				{% endif %}
 			</a>
-			{% endif %}
+
 
 			<div class="dropdown-menu" aria-labelledby="profile-dropdown">
 				<a class="dropdown-item" href="{% url 'profile' %}" style="color: black;">Your Profile</a>

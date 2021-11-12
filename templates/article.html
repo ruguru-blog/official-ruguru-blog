@@ -43,7 +43,7 @@
 						<ul class="recent-list" style="list-style: none; font-size: 1.2rem;">
 							{% if latest %}
 							{% for latest_post in latest%}
-							<a href="{% url 'article_details' latest_post.slug %}" class="text-muted">
+							<a href="{{ post.get_absolute_url }}" class="text-muted">
 								<li>{{ latest_post.title}}</li>
 							</a>
 							<hr>

@@ -18,92 +18,20 @@ class IndexListView(ListView):
 def about_me(request):
     return render(request, 'categories/about_me.html')
 
-
-class TechListView(ListView):
-
-    category = get_object_or_404(Category, slug='technology')
-    queryset = Post.objects.filter(
-        category=category, status='published').order_by('-publication_date')
-    template_name = 'categories/tech.html'
+class CategoryList(ListView):
+    template_name = 'blog/category_list.html'
+    
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
+        return Post.objects.filter(
+        category=self.category, status='published').order_by('-publication_date')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["category_name"] = self.category.title
-        context["category_description"] = self.category.description
-        
-        return context
-
-class BusinessListView(ListView):
-    category = get_object_or_404(Category, slug='business')
-    queryset = Post.objects.filter(
-        category = category, status='published').order_by('-publication_date')
-    template_name = 'categories/business.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["category_name"] = self.category.title
+        context["category_title"] = self.category.title
+        context['category_post_list'] = self.get_queryset()
         context["category_description"] = self.category.description
         return context
-
-class MarketingListView(ListView):
-    category = get_object_or_404(Category, slug='marketing')
-    queryset = Post.objects.filter(
-        category=category, status='published').order_by('-publication_date')
-    template_name = 'categories/marketing.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["category_name"] = self.category.title
-        context["category_description"] = self.category.description
-        return context
-
-
-class ContentStrategyListView(ListView):
-    category = get_object_or_404(Category, slug='content-strategy')
-    queryset = Post.objects.filter(
-        category=category, status='published').order_by('-publication_date')
-    template_name = 'categories/content_strategy.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["category_name"] = self.category.title
-        context["category_description"] = self.category.description
-        return context
-
-
-class LifeHacksListView(ListView):
-    category = get_object_or_404(Category,slug='life-hacks')
-    queryset = Post.objects.filter(
-        category=category, status='published').order_by('-publication_date')
-    template_name = 'categories/life_hacks.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["category_name"] = self.category.title
-        context["category_description"] = self.category.description
-        return context
-
-
-class ProjectManagementListView(ListView):
-    category = get_object_or_404( Category, slug='project-management')
-    queryset = Post.objects.filter(
-        category=category, status='published').order_by('-publication_date')
-    template_name = 'categories/project_management.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["category_name"] = self.category.title
-        context["category_description"] = self.category.description
-        return context
-
-
-def category_list(request, slug):
-    category = get_object_or_404(Category, slug=slug)
-    queryset = Post.objects.filter(
-        category=category, status='published').order_by('-publication_date')
-    
-    context = {"category_post_list": queryset,"category_name": category.title}
-    return render(request, 'blog/category_list.html', context)
 
 
 def post_detail(request, slug):

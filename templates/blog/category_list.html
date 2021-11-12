@@ -6,16 +6,16 @@
 
 {% endblock %}
 
-<title>{% block title %}Category: {{category_name}}{% endblock %}</title>
+<title>{% block title %}Category: {{category_title}}{% endblock %}</title>
 
 
 {% block content %}
 <div class="container">
 	<div class="page-title">
 		<div class="category-title">
-			<h1>{{category_name}}</h1>
+			<h1>{{category_title}}</h1>
 		</div>
-		<h3 class='page-description'>The Worlds of devices, applications &amp; Next Gen. Evolution</h3>
+		<h3 class='page-description'>{{ category_description }}</h3>
 	</div>
 
 	<hr>
@@ -32,7 +32,7 @@
 				</figure>
 				<div class="article-content">
 					<a href="#" class="card-category">{{post.get_category}}</a>
-					<a href="{{post.get}}">
+					<a href="{{post.get_absolute_url }}">
 						<h3 class="card-title">{{post.title}}</h3>
 					</a>
 					<p class="card-excerpt">{{post.post_content | safe | slice:":200" }}...</p>
