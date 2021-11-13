@@ -36,7 +36,7 @@
 					<a href="{{post.get_absolute_url }}">
 						<h3 class="card-title">{{post.title}}</h3>
 					</a>
-					<p class="card-excerpt">{{post.post_content | safe | slice:":200" }}...</p>
+					<p class="card-excerpt">{{post.post_excerpt | safe | slice:":200" }}...</p>
 				</div>
 
 				<div class="card-info">
