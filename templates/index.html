@@ -30,7 +30,7 @@ Ruguru Blog
 					<a href="{% url 'article_details' post.slug %}">
 						<h3 class="card-title">{{post.title}}</h3>
 					</a>
-					<p class="card-excerpt">{{post.post_content | safe | slice:":250" }}...</p>
+					<p class="card-excerpt">{{post.post_excerpt | safe | slice:":250" }}...</p>
 				</div>
 
 				<div class="card-info">

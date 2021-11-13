@@ -3,8 +3,11 @@
 
 {% block headContent %}
 <link rel="stylesheet" href="{% static 'css/article.css' %}">
-<meta property="og:type" content="article">
-<meta property="og:title" content="{{post.title}}">
+<meta data-react-helmet="true" property="og:type" content="article">
+<meta data-react-helmet="true" property="og:image" content="{{post.picture.url}}">
+<meta data-react-helmet="true" property="og:title" content="{{post.title}} | Ruguru Blog">
+<meta data-react-helmet="true" property="og:url" content="">
+<meta data-react-helmet="true" name="description" content="{{ post.post_excerpt }}">
 {% endblock %}
 
 <title>{% block title %}{{post.title}}{% endblock %}</title>
