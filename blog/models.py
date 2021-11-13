@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -64,8 +65,10 @@ class Post(models.Model):
                                 upload_to='uploads/%Y/%m/%d', blank=True, null=True, verbose_name='Picture as thumbnail')
     picture_description = models.CharField(
         max_length=127, verbose_name="description of the image", null=False)
+    post_excerpt = RichTextField(verbose_name="post excerpt")
     post_content = RichTextUploadingField(
         null=False, verbose_name="post content")
+    is_featured = models.BooleanField(verbose_name="Is the post feature or not?",default=False)
     author = models.CharField(
         max_length=64, default='Anonymous', verbose_name='Created by')
     tags = models.ManyToManyField(Tag)
