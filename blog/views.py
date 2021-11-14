@@ -39,14 +39,17 @@ def post_detail(request, slug):
     comments = Comment.objects.filter(post=post)
 
     # get 5 latest post
-    recent_post = Post.objects.order_by('-publication_date')[:5]
+    recent_post = Post.objects.filter(category = post.category).order_by('-publication_date')[:5]
     latest = []
 
-    for i in recent_post:
+    for r_post in recent_post:
+        if r_post.slug == post.slug:
+            continue
+        
         latest.append(
             {
-                "title": i.title,
-                'slug': i.slug
+                "title": r_post.title,
+                'slug': r_post.slug
             }
         )
 
