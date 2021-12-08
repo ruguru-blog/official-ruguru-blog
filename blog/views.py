@@ -8,28 +8,31 @@ from .models import Post
 from .models import Category
 from .models import Comment
 
+from django.db.models import Q
+
 
 class IndexListView(ListView):
-    queryset = Post.objects.filter(
-        status='published').order_by('?')
-    template_name = 'index.html'
+    queryset = Post.objects.filter(status="published").order_by("?")
+    template_name = "index.html"
 
 
 def about_me(request):
-    return render(request, 'categories/about_me.html')
+    return render(request, "categories/about_me.html")
+
 
 class CategoryList(ListView):
-    template_name = 'blog/category_list.html'
-    
+    template_name = "blog/category_list.html"
+
     def get_queryset(self):
-        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
-        return Post.objects.filter(
-        category=self.category, status='published').order_by('-publication_date')
-    
+        self.category = get_object_or_404(Category, slug=self.kwargs["slug"])
+        return Post.objects.filter(category=self.category, status="published").order_by(
+            "-publication_date"
+        )
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["category_title"] = self.category.title
-        context['category_post_list'] = self.get_queryset()
+        context["category_post_list"] = self.get_queryset()
         context["category_description"] = self.category.description
         return context
 
@@ -38,32 +41,39 @@ def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     comments = Comment.objects.filter(post=post)
 
+    # filter used to select latest posts
+    filters = Q(category=post.category) & Q(status="published") & ~Q(slug=post.slug)
+
     # get 5 latest post
-    recent_post = Post.objects.filter(category = post.category).order_by('-publication_date')[:5]
+    recent_posts = (
+        Post.objects.filter(filters)
+        .order_by("-publication_date")
+        .values("title", "slug")[:5]
+    )
+
+    # top five latest post
     latest = []
 
-    for r_post in recent_post:
-        if r_post.slug == post.slug:
-            continue
-        
-        latest.append(
-            {
-                "title": r_post.title,
-                'slug': r_post.slug
-            }
-        )
+    for recent_post in recent_posts:
+        latest.append({"title": recent_post["title"], "slug": recent_post["slug"]})
 
-    if request.method == 'POST':
+    if request.method == "POST":
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-    comment_form = CommentForm()
-    context = {'post': post, 'comments': comments,
-               "comment_form": comment_form, "latest": latest}
 
-    return render(request, 'article.html', context)
+    comment_form = CommentForm()
+
+    context = {
+        "post": post,
+        "comments": comments,
+        "comment_form": comment_form,
+        "latest": latest,
+    }
+
+    return render(request, "article.html", context)
 
 
 def error_404(request, exception):
