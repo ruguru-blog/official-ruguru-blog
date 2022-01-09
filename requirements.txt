@@ -3,7 +3,7 @@ autopep8==1.5.7
 black==21.12b0
 click==8.0.3
 colorama==0.4.4
-Django==3.2.4
+Django==3.2.10
 django-ckeditor==6.1.0
 django-crispy-forms==1.11.2
 django-js-asset==1.2.2
